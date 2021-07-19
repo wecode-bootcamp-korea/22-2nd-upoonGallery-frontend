@@ -1,4 +1,4 @@
-const theme = {
+const Theme = {
   background: '#FFFEFC',
   white: '#FFFFFF',
   vermilion: '#ff7425',
@@ -14,4 +14,4 @@ const theme = {
   fontContent: "'Noto Sans KR', sans-serif;",
 };
 
-export default theme;
+export default Theme;
