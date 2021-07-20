@@ -1,7 +1,13 @@
-import React from 'react';
+import TopSlider from './Slider/TopSlider';
+import BottomSlider from './Slider/BottomSlider';
+import MiddleBanner from './Slider/MiddleBanner';
 
-const Main = props => {
-  return <div>hi</div>;
-};
-
-export default Main;
+export default function Main() {
+  return (
+    <div>
+      <TopSlider />
+      <MiddleBanner />
+      <BottomSlider />
+    </div>
+  );
+}
