@@ -26,7 +26,6 @@ const Login = props => {
       },
     });
   };
-
   return (
     <LoginPage>
       <LoginContain>

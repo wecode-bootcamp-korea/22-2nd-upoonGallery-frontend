@@ -23,7 +23,7 @@ const Nav = props => {
         <MyPageContain>
           <i className="far fa-image fa-2x"></i>
           <i className="fas fa-search fa-2x"></i>
-          <i class="fas fa-shopping-cart fa-2x"></i>
+          <i className="fas fa-shopping-cart fa-2x"></i>
           <UserContain>
             <button onClick={() => history.push('/login')}>로그인</button>
             <button onClick={() => history.push('/signup')}>회원가입</button>
