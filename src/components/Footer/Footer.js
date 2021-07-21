@@ -35,9 +35,9 @@ const Footer = props => {
           <span>평일 9:00 - 18:00</span>
         </Call>
         <Icons>
-          <i class="fab fa-instagram fa-2x"></i>
-          <i class="fab fa-apple fa-2x"></i>
-          <i class="fab fa-google fa-2x"></i>
+          <i className="fab fa-instagram fa-2x"></i>
+          <i className="fab fa-apple fa-2x"></i>
+          <i className="fab fa-google fa-2x"></i>
         </Icons>
       </ContactInfo>
     </FooterBar>
