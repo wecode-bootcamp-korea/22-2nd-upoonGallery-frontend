@@ -1,0 +1,53 @@
+{
+  "results": [
+    {
+      "name": "색상",
+      "type": "color",
+      "category_list": [
+        { "name": "레드", "value": "레드", "color": "red" },
+        { "name": "블루", "value": "블루", "color": "blue" },
+        { "name": "그린", "value": "그린", "color": "green" }
+      ]
+    },
+    {
+      "name": "형태 ",
+      "type": "shape",
+      "category_list": [
+        { "name": "정사각형", "value": "정사각형" },
+        { "name": "가로형", "value": "가로형" },
+        { "name": "세로형", "value": "세로형" }
+      ]
+    },
+    {
+      "name": "사이즈",
+      "type": "size",
+      "category_list": [
+        { "name": "1~10호", "value": { "min_size": 1, "max_size": 10 } },
+        { "name": "11~20호", "value": { "min_size": 11, "max_size": 20 } },
+        { "name": "21~30호", "value": { "min_size": 21, "max_size": 30 } }
+      ]
+    },
+    {
+      "name": "가격",
+      "type": "price",
+      "category_list": [
+        {
+          "name": "~15만원",
+          "value": { "min_price": 0, "max_price": 150000 }
+        },
+        {
+          "name": "15만원~30만원",
+          "value": { "min_price": 150001, "max_price": 300000 }
+        },
+        {
+          "name": "30만원~45만원",
+          "value": { "min_price": 300001, "max_price": 450000 }
+        },
+        {
+          "name": "45만원~60만원",
+          "value": { "min_price": 450001, "max_price": 600000 }
+        }
+      ]
+    }
+  ]
+}
