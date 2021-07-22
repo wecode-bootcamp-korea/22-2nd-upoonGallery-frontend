@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { J_API } from '../../../config';
 
 export default function TopSlideContents({ slideRef }) {
   const [topSlideData, setTopSlideData] = useState([]);
 
   useEffect(() => {
     fetch(
-      'http://10.58.0.226:8000/arts?sort=created-descend&limit=4&offset=1&shape=가로형'
+      `${J_API.DISCOVER}?sort=created-descend&limit=4&offset=1&shape=가로형`
     )
       .then(res => res.json())
       .then(data => {
@@ -41,5 +42,5 @@ const MoveDiv = styled.div`
   height: 100%;
   position: absolute;
   bottom: 0;
-  transform: translateX(100/6 %);
+  transform: translateX(100/6%);
 `;

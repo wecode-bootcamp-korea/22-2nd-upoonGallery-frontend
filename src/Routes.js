@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
 import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import Main from './pages/Main/Main';
@@ -19,6 +18,7 @@ class Routes extends Component {
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Main} />
+          <Route exact path="/discover" component={Discover} />
           <Route exact path="/discover/:id" component={Discover} />
           <Route exact path="/detail/:id" component={Detail} />
           <Route exact path="/cart" component={Cart} />
