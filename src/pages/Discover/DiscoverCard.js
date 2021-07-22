@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useHistory } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 export default function DiscoverCard({
@@ -12,14 +12,13 @@ export default function DiscoverCard({
   const imageHeightRef = useRef(null);
   const [spans, setSpans] = useState(0);
   const [load, setLoad] = useState(false);
-  const isMounted = useRef(false);
-
   useEffect(() => {
-    if (!isMounted.current) return (isMounted.current = true);
-
-    const height = imageHeightRef.current.offsetHeight;
-    const spans = Math.ceil(height / 10);
-    setSpans(spans);
+    if (load) {
+      const height = imageHeightRef.current.offsetHeight;
+      const spans = Math.ceil(height / 10);
+      setSpans(spans);
+    }
+    return setLoad(false);
   }, [load]);
 
   return (

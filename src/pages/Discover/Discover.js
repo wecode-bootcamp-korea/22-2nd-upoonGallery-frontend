@@ -22,22 +22,12 @@ const Discover = props => {
     page: '',
   });
 
-  // 통신
-
-  // useEffect(() => {
-  //   fetch(
-  //     location.search === ''
-  //       ? `${J_API.DISCOVER}?limit=12`
-  //       : `${J_API.DISCOVER}?${location.search}`
-  //   )
-  //     .then(res => res.json())
-  //     .then(data => setArts(data));
-  // }, [location.search]);
-
-  // 목데이터
-
   useEffect(() => {
-    fetch(`/data/arts.json?${query}`)
+    fetch(
+      location.search === ''
+        ? `${J_API.DISCOVER}?limit=12`
+        : `${J_API.DISCOVER}?${location.search}`
+    )
       .then(res => res.json())
       .then(data => setArts(data));
   }, [location.search]);
@@ -104,7 +94,6 @@ const Discover = props => {
 
   const filterDiscoverList = (type, value) => {
     let tmp = { ...selected };
-    let tmpQuery = query;
 
     if (type === 'shape' || type === 'color') {
       if (tmp[type].includes(value)) {
@@ -254,7 +243,7 @@ const Discover = props => {
           <List>
             {arts.results.map(art => (
               <DiscoverCard
-                id={art.id}
+                id={art.art_id}
                 title={art.title}
                 artist={art.artist_name}
                 size={art.size}
