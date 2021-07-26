@@ -1,14 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { LOGIN_API } from '../../config';
+const { Kakao } = window;
 
 const Login = props => {
+  const history = useHistory();
+
+  const handleKakaoLogin = () => {
+    Kakao.Auth.login({
+      success: function (authObj) {
+        fetch(LOGIN_API, {
+          method: 'GET',
+          headers: { Authorization: authObj.access_token },
+        })
+          .then(response => response.json())
+          .then(result => {
+            localStorage.setItem('access_token', result.access_token);
+            alert('로그인 성공');
+            history.push('/main');
+          });
+      },
+      fail: function (err) {
+        alert(JSON.stringify(err));
+      },
+    });
+  };
+
   return (
     <LoginPage>
       <LoginContain>
         <h1>로그인</h1>
         <BtnContainer>
-          <KaKaoBtn>
+          <KaKaoBtn onClick={handleKakaoLogin}>
             <i className="fas fa-comment"></i>
             <BtnText>카카오로 로그인</BtnText>
           </KaKaoBtn>
