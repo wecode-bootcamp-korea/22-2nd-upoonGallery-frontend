@@ -6,7 +6,7 @@ const Slide = ({ images, imgNo, slideChange, imageId }) => {
     <>
       <ImageSlide>
         <SlideBox images={images} imgNo={imgNo} imageId={imageId}>
-          {imageId.src.map((src, idx) => {
+          {imageId.image_urls.map((src, idx) => {
             return (
               <Slidelist key={idx}>
                 <img src={src} alt="art" />
@@ -16,7 +16,7 @@ const Slide = ({ images, imgNo, slideChange, imageId }) => {
         </SlideBox>
       </ImageSlide>
       <BtnContainer>
-        {imageId.src.map((src, idx) => {
+        {imageId.image_urls.map((src, idx) => {
           return (
             <BtnImg key={idx} onClick={() => slideChange(idx)}>
               <img src={src} alt="art" />
@@ -42,7 +42,7 @@ const SlideBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${({ imageId }) => imageId.src.length * 800}px;
+  width: ${({ imageId }) => imageId.image_urls.length * 800}px;
   transform: translateX(${({ imgNo }) => imgNo.imgNo * -800}px);
   transition: all 300ms ease 0s;
   position: relative;

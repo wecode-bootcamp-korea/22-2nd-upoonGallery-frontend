@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const DetailCard = ({ imageId }) => {
+const DetailCard = ({ relativeImg }) => {
   return (
     <Masonry>
-      {imageId.relative.map((relative, idx) => {
+      {relativeImg.map((image, idx) => {
         return (
           <Grid key={idx}>
-            <img src={relative} alt="" />
+            <img src={image} alt="" />
           </Grid>
         );
       })}

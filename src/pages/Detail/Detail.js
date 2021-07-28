@@ -24,14 +24,24 @@ const Detail = props => {
     file: null,
     previewURL: '',
   });
+  const [relativeImg, setRelativeImg] = useState([]);
 
   const { id } = useParams();
 
+  // setImages([data.art_information])
   useEffect(() => {
-    fetch(`http://localhost:3000/data/ImgData.json`)
+    fetch(`http://10.58.1.172:8000/arts/${id}`)
       .then(res => res.json())
-      .then(data => setImages(data));
-  }, []);
+      .then(data => setImages(data.art_information));
+  }, [id]);
+
+  useEffect(() => {
+    if (images) {
+      fetch(`http://10.58.1.172:8000/arts?artist=${images.artist_name}`)
+        .then(res => res.json())
+        .then(data => setRelativeImg(data.results.map(i => i.image_url)));
+    }
+  }, [images]);
 
   const colorChange = id => {
     const newArr = btnArr.slice();
@@ -57,7 +67,7 @@ const Detail = props => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
-  const imageId = images.find(function (image) {
+  const imageId = [images].find(function (image) {
     // eslint-disable-next-line eqeqeq
     return image.id == id;
   });
@@ -113,7 +123,7 @@ const Detail = props => {
     <ArtWork>
       {images.length !== 0 && (
         <DetailContents>
-          <PicName>{imageId.name}</PicName>
+          <PicName>{imageId.title}</PicName>
           <Slide
             images={images}
             imageId={imageId}
@@ -125,7 +135,7 @@ const Detail = props => {
               이미지를 클릭하면 확대하여 보실 수 있습니다. 무단 도용 및 재배포를
               금지합니다.
             </span>
-            <span>Copyright © {imageId.author} All rights reserved.</span>
+            <span>Copyright © {imageId.artist_name} All rights reserved.</span>
           </Copyright>
           <Hanging>작품 걸어보기</Hanging>
           <SelectionBar></SelectionBar>
@@ -133,7 +143,7 @@ const Detail = props => {
             {btnArr.length !== 0 && (
               <BackgroundBox color={btnArr[colorIndex].color}>
                 <Paint>
-                  <img src={imageId.src[0]} alt="" />
+                  <img src={imageId.image_urls[0]} alt="" />
                 </Paint>
                 <img src="http://localhost:3000/images/bg.png" alt="" />
               </BackgroundBox>
@@ -162,21 +172,24 @@ const Detail = props => {
               <Infos>
                 <NamePic>
                   <AuthorPic>
-                    <img src={imageId.author_pic} alt="" />
+                    <img
+                      src="https://og-data.s3.amazonaws.com/static/pages/img/service/detailview/artist-img@2x.png"
+                      alt=""
+                    />
                   </AuthorPic>
-                  <AuthorName>{imageId.author}</AuthorName>
+                  <AuthorName>{imageId.artist_name}</AuthorName>
                   <MoreBtn>작품 더보기</MoreBtn>
                 </NamePic>
-                <AuthorSchool>{imageId.author_school}</AuthorSchool>
+                <AuthorSchool>
+                  Harvard University Bachelor's Degrees In Philosophy
+                </AuthorSchool>
               </Infos>
               <PaintInfo>
-                <PaintName>{imageId.name}</PaintName>
+                <PaintName>{imageId.title}</PaintName>
                 <PaintInfoTalble>
-                  <span>캔버스에 아크릴채색, 구타</span>
-                  <span>
-                    {imageId.size}호, {imageId.year}
-                  </span>
-                  <PaintCode>작품코드 : {imageId.code}</PaintCode>
+                  <span>{imageId.discription}</span>
+                  <span>{imageId.size}호, 2021</span>
+                  <PaintCode>작품코드 : A9512-3698</PaintCode>
                 </PaintInfoTalble>
                 <SettingPrice>
                   <span>* 출장비 및 설치비는 별도입니다.</span>
@@ -200,14 +213,17 @@ const Detail = props => {
           <ReviewContainer>
             <Review>
               <ReviewImage>
-                <img src={imageId.review_image} alt="" />
+                <img src={imageId.image_urls[0]} alt="" />
               </ReviewImage>
               <ReviewContents>
                 <ReviewerInfo>
-                  <img src={imageId.reviwer_photo} alt="" />
-                  <span>{imageId.reviwer}</span>
+                  <img
+                    src="https://og-data.s3.amazonaws.com/static/pages/img/service/detailview/artist-img@2x.png"
+                    alt=""
+                  />
+                  <span>이재현</span>
                 </ReviewerInfo>
-                <ReveiwComment>{imageId.review_comment}</ReveiwComment>
+                <ReveiwComment>자 드가자</ReveiwComment>
               </ReviewContents>
             </Review>
             <UploadReview name="reviewUpload" onClick={modalOnOff}>
@@ -226,7 +242,7 @@ const Detail = props => {
           </ReviewContainer>
           <Hanging>다른 작품 보기</Hanging>
           <SelectionBar></SelectionBar>
-          <DetailCard imageId={imageId} />
+          <DetailCard relativeImg={relativeImg} />
         </DetailContents>
       )}
     </ArtWork>
