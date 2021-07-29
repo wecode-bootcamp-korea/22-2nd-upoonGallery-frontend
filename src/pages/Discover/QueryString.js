@@ -25,10 +25,10 @@ export default function QueryString(state) {
 
   function makeQueryString(obj = {}) {
     if (isEmptyObject(obj)) return '';
-    else if (obj.page !== '')
+    else if (obj.offset !== '')
       return (
         '/' +
-        obj.page +
+        obj.offset +
         '?&limit=12&' +
         Object.entries(obj).filter(isValidItem).map(merge).join('&')
       );
