@@ -288,11 +288,12 @@ const LocationNow = styled.div`
 `;
 
 const FilterContainer = styled.section`
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 10px;
   width: 100%;
   max-width: 1150px;
   margin: 20px auto 0;
-  border: 1px solid gray;
-  border-radius: 10px;
 `;
 
 const List = styled.section`
@@ -315,7 +316,6 @@ const ListSort = styled.div`
 `;
 
 const FilterItem = styled.div`
-  border: 1px solid gray;
   height: 40px;
   padding: 10px 0px;
 `;
@@ -347,10 +347,10 @@ const FilterOption = styled.div`
   background-color: ${props =>
     props.optionType === 'color' ? props.optionColor : ''};
   color: ${props => (props.optionType === 'color' ? props.optionColor : '')};
-  border-radius: ${props => (props.optionType === 'color' ? '50%' : '')};
+  border-radius: ${props => (props.optionType === 'color' ? '50%' : '5px')};
   border: ${props =>
     props.isSelectedArray || props.isSelectedObject
-      ? '2px solid black'
+      ? '2px solid #000'
       : '1px solid rgba(0,0,0,0.1)'};
 `;
 
