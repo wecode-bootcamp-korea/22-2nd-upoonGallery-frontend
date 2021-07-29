@@ -16,7 +16,7 @@ const Nav = props => {
           </LogoText>
         </Logo>
         <MenuContain>
-          <NavMenu>렌탈하기</NavMenu>
+          <NavMenu onClick={() => history.push('/discover')}>렌탈하기</NavMenu>
           <NavMenu>이용후기</NavMenu>
           <NavMenu>작가소개</NavMenu>
         </MenuContain>
@@ -87,6 +87,7 @@ const MenuContain = styled.div`
 const NavMenu = styled.div`
   padding-left: 70px;
   font-size: 14px;
+  cursor: pointer;
 `;
 
 const MyPageContain = styled.div`
