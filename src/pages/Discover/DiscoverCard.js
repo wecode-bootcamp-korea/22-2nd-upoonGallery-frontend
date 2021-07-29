@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-
 export default function DiscoverCard({
   id,
   artist,
@@ -12,6 +11,7 @@ export default function DiscoverCard({
   const imageHeightRef = useRef(null);
   const [spans, setSpans] = useState(0);
   const [load, setLoad] = useState(false);
+
   useEffect(() => {
     if (load) {
       const height = imageHeightRef.current.offsetHeight;
@@ -26,7 +26,7 @@ export default function DiscoverCard({
       spans={spans}
       onLoad={() => setLoad(true)}
       onClick={() => {
-        history.push(`detail/${id}`);
+        history.push(`../detail/${id}`);
       }}
     >
       <div ref={imageHeightRef}>
