@@ -28,7 +28,6 @@ const Detail = props => {
 
   const { id } = useParams();
 
-  // setImages([data.art_information])
   useEffect(() => {
     fetch(`http://10.58.1.172:8000/arts/${id}`)
       .then(res => res.json())
