@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import DiscoverCard from './DiscoverCard';
 import DiscoverPageNation from './DiscoverPageNation';
 import { J_API } from '../../config';
+import QueryString from './QueryString';
+
 const LIMIT = 12;
 
 const Discover = props => {
@@ -22,6 +24,7 @@ const Discover = props => {
     page: '',
   });
 
+  console.log(params);
   useEffect(() => {
     fetch(
       location.search === ''
@@ -43,7 +46,7 @@ const Discover = props => {
   }, [query]);
 
   useEffect(() => {
-    setQuery(makeQueryString(selected));
+    setQuery(QueryString(selected));
   }, [selected]);
 
   useEffect(() => {
@@ -83,7 +86,7 @@ const Discover = props => {
     let tmpQuery = query;
 
     tempSelected = { ...tempSelected, page: value };
-    tmpQuery = makeQueryString(tempSelected);
+    tmpQuery = QueryString(tempSelected);
 
     setQuery(tmpQuery);
     setSelected(tempSelected);
@@ -111,53 +114,12 @@ const Discover = props => {
     }
   };
 
-  const makeQueryString = obj => {
-    let result;
-
-    const mergeQsArr = (arr, name) => {
-      return arr.reduce((acc, cur, idx) => {
-        if (idx === 0) return name + '=' + cur;
-        return acc + '&' + name + '=' + cur;
-      }, '');
-    };
-    const color = mergeQsArr(obj.color, 'color');
-    const shape = mergeQsArr(obj.shape, 'shape');
-    const size =
-      'min_size=' + obj.size.min_size + '&' + 'max_size=' + obj.size.max_size;
-    const price =
-      'min_price=' +
-      obj.price.min_price +
-      '&' +
-      'max_price=' +
-      obj.price.max_price;
-    const sort = obj.sort === '' ? '' : 'sort=' + obj.sort;
-    const page = obj.page === '' ? '' : obj.page;
-    const offset = obj.page === '' ? '' : 'offset=' + obj.page;
-    const limit = 'limit=' + LIMIT;
-
-    if (size.includes(undefined) && !price.includes(undefined)) {
-      result = '?&' + [price, color, shape, sort, limit, offset].join('&');
-    } else if (price.includes(undefined) && !size.includes(undefined)) {
-      result = '?&' + [size, color, shape, sort, limit, offset].join('&');
-    } else if (size.includes(undefined) && price.includes(undefined)) {
-      result = '?&' + [color, shape, sort, limit, offset].join('&');
-    } else {
-      result =
-        '?&' + [price, color, shape, size, sort, limit, offset].join('&');
-    }
-
-    if (page !== '') {
-      result = `${page}${result}`;
-    }
-    return result;
-  };
-
   const ordering = value => {
     let tempSelected = { ...selected };
     let tmpQuery = query;
 
     tempSelected = { ...tempSelected, sort: value };
-    tmpQuery = makeQueryString(tempSelected);
+    tmpQuery = QueryString(tempSelected);
 
     setQuery(tmpQuery);
     setSelected(tempSelected);
@@ -227,7 +189,7 @@ const Discover = props => {
               }}
             >
               <option value="">옵션선택</option>
-              <option value={'created-ascend'}>최신 등록순</option>
+              <option value={'created-descend'}>최신 등록순</option>
               <option value={'price-ascend'}>낮은 가격순</option>
               <option value={'size-ascend'}>작은 크기순</option>
             </select>
