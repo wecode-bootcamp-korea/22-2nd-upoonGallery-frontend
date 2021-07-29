@@ -46,8 +46,6 @@ const Discover = props => {
     setQuery(makeQueryString(selected));
   }, [selected]);
 
-  // 색상, 형태, 사이즈, 가격, 정렬이 변했을 때, page 를 ''으로 초기화시키자
-  // 정렬은 보류, 의견듣고 수정
   useEffect(() => {
     let tempSelected = { ...selected };
     tempSelected = { ...tempSelected, page: '' };
@@ -59,7 +57,6 @@ const Discover = props => {
     selected.size.min_size,
   ]);
 
-  //페이지네이션 컴포넌트 분리해야될듯,,,
   const pagesNumber = Math.round(Number(arts.total_count) / 12);
   const pageNationBtnNumber = [];
   const range = 2;
@@ -103,9 +100,7 @@ const Discover = props => {
         tmp[type].push(value);
         setSelected({ ...selected, [type]: tmp[type] });
       }
-    }
-    // 객체형 스테이트 초기화
-    else if (type === 'size' || type === 'price') {
+    } else if (type === 'size' || type === 'price') {
       if (Object.values(tmp[type])[0] === Object.values(value)[0]) {
         tmp[type] = {};
         setSelected({ ...selected, [type]: {} });
@@ -119,7 +114,6 @@ const Discover = props => {
   const makeQueryString = obj => {
     let result;
 
-    // arr.reduce() 공부
     const mergeQsArr = (arr, name) => {
       return arr.reduce((acc, cur, idx) => {
         if (idx === 0) return name + '=' + cur;
@@ -141,7 +135,6 @@ const Discover = props => {
     const offset = obj.page === '' ? '' : 'offset=' + obj.page;
     const limit = 'limit=' + LIMIT;
 
-    // undefined 정리
     if (size.includes(undefined) && !price.includes(undefined)) {
       result = '?&' + [price, color, shape, sort, limit, offset].join('&');
     } else if (price.includes(undefined) && !size.includes(undefined)) {
@@ -154,7 +147,7 @@ const Discover = props => {
     }
 
     if (page !== '') {
-      result = `/${page}${result}`;
+      result = `${page}${result}`;
     }
     return result;
   };
@@ -174,7 +167,10 @@ const Discover = props => {
     <div>
       <MarginForNav />
       <PageHeader>
-        <LocationNow>홈 작품보기</LocationNow>
+        <LocationNow>
+          <i class="fas fa-palette"></i>
+          작품보기
+        </LocationNow>
       </PageHeader>
       <FilterContainer>
         {list.length !== 0 &&
@@ -285,6 +281,14 @@ const LocationNow = styled.div`
   max-width: 1150px;
   text-align: right;
   margin: 0px auto;
+  font-size: 16px;
+  cursor: pointer;
+
+  .fas {
+    font-size: 16px;
+    color: #5f5f5f;
+    margin-right: 10px;
+  }
 `;
 
 const FilterContainer = styled.section`
@@ -313,11 +317,25 @@ const ListHeader = styled.div`
 const ListSort = styled.div`
   max-width: 1150px;
   margin: 20px auto;
+  font-size: 14px;
+
+  form {
+    margin-top: 10px;
+
+    select {
+      width: 90px;
+      padding: 5px 10px;
+      border: 1px solid #999;
+      background-color: #fafafa;
+      border-radius: 5px;
+    }
+  }
 `;
 
 const FilterItem = styled.div`
   height: 40px;
   padding: 10px 0px;
+  color: #5f5f5f;
 `;
 
 const FilterTitle = styled.div`
@@ -326,6 +344,8 @@ const FilterTitle = styled.div`
   height: 100%;
   text-align: center;
   line-height: 40px;
+  font-weight: 500;
+  color: #000;
 `;
 
 const FilterOptions = styled.div`
@@ -340,25 +360,27 @@ const FilterOption = styled.div`
   display: inline-block;
   position: relative;
   cursor: pointer;
-  padding: 0 10px;
-  margin: 0px 10px;
+  padding: ${({ optionType }) =>
+    optionType === 'color' ? '0 10px' : '0 14px'};
+  margin: 0 10px;
   height: 100%;
 
   background-color: ${props =>
     props.optionType === 'color' ? props.optionColor : ''};
-  color: ${props => (props.optionType === 'color' ? props.optionColor : '')};
+  color: ${({ optionType, optionColor }) =>
+    optionType === 'color' ? optionColor : ''};
   border-radius: ${props => (props.optionType === 'color' ? '50%' : '5px')};
-  border: ${props =>
-    props.isSelectedArray || props.isSelectedObject
-      ? '2px solid #000'
-      : '1px solid rgba(0,0,0,0.1)'};
+  border: ${({ isSelectedArray, isSelectedObject }) =>
+    isSelectedArray || isSelectedObject
+      ? '2px solid #5f5f5f'
+      : '1px solid #e9ecef'};
 `;
 
 const SelectedColorCheck = styled.div`
   position: absolute;
   top: 0;
   color: white;
-  display: ${props => (props.isSelectedArray ? 'block' : 'none')};
+  display: ${({ isSelectedArray }) => (isSelectedArray ? 'block' : 'none')};
 `;
 const PageNationBtnWrap = styled.section`
   display: block;

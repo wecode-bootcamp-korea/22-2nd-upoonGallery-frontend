@@ -36,7 +36,7 @@ export default function DiscoverCard({
         <DiscoverCardDescription>
           <DiscoverCardTitle>{title}</DiscoverCardTitle>
           <DiscoverCardText>{artist}</DiscoverCardText>
-          <DiscoverCardText>{size}호</DiscoverCardText>
+          <DiscoverCardSize>{size}호</DiscoverCardSize>
         </DiscoverCardDescription>
       </div>
     </DiscoverCardItem>
@@ -65,11 +65,19 @@ const DiscoverCardDescription = styled.div`
 
 const DiscoverCardTitle = styled.div`
   display: block;
+  margin-left: 10px;
+  font-size: 18px;
 `;
 
 const DiscoverCardText = styled.div`
   display: inline-block;
-  margin: 10px 5px 0 0;
+  margin: 10px 0px 0px 10px;
+  font-size: 14px;
+  color: #989898;
+`;
+
+const DiscoverCardSize = styled(DiscoverCardText)`
+  font-size: 12px;
 `;
 const DiscoverCardImg = styled.img.attrs(imageSrc => ({
   src: imageSrc.imageSrc,

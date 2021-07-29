@@ -104,7 +104,7 @@ const Detail = props => {
     let comments = comment.Comment;
     formData.append('file', file);
     formData.append('comment', comments);
-    fetch('http://10.58.0.235:8000/arts/1/reviews', {
+    fetch(`${API}/arts/1/reviews`, {
       method: 'POST',
       headers: {
         Authorization:

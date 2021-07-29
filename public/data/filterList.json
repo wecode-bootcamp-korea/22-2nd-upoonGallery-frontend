@@ -22,9 +22,9 @@
       "name": "사이즈",
       "type": "size",
       "category_list": [
-        { "name": "1~10호", "value": { "min_size": 1, "max_size": 10 } },
-        { "name": "11~20호", "value": { "min_size": 11, "max_size": 20 } },
-        { "name": "21~30호", "value": { "min_size": 21, "max_size": 30 } }
+        { "name": "1 ~ 10호", "value": { "min_size": 1, "max_size": 10 } },
+        { "name": "11 ~ 20호", "value": { "min_size": 11, "max_size": 20 } },
+        { "name": "21 ~ 30호", "value": { "min_size": 21, "max_size": 30 } }
       ]
     },
     {
@@ -32,19 +32,19 @@
       "type": "price",
       "category_list": [
         {
-          "name": "~15만원",
+          "name": "~  15만원",
           "value": { "min_price": 0, "max_price": 150000 }
         },
         {
-          "name": "15만원~30만원",
+          "name": "15만원 ~ 30만원",
           "value": { "min_price": 150001, "max_price": 300000 }
         },
         {
-          "name": "30만원~45만원",
+          "name": "30만원 ~ 45만원",
           "value": { "min_price": 300001, "max_price": 450000 }
         },
         {
-          "name": "45만원~60만원",
+          "name": "45만원 ~ 60만원",
           "value": { "min_price": 450001, "max_price": 600000 }
         }
       ]

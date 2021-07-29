@@ -23,8 +23,9 @@ const ReviewModal = ({
               </ImgView>
             )}
             <ReviewForm>
-              <FileInput>이미지 업로드</FileInput>
+              <FileInput for="upload">이미지 업로드</FileInput>
               <UploadBtn
+                id="upload"
                 type="file"
                 accept="image/jpg,image/png,image/jpeg,image/gif"
                 name="ReviewImg"
