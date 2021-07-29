@@ -21,7 +21,7 @@ const Discover = props => {
     size: {},
     price: {},
     sort: '',
-    page: '',
+    offset: '',
   });
 
   console.log(params);
@@ -51,7 +51,7 @@ const Discover = props => {
 
   useEffect(() => {
     let tempSelected = { ...selected };
-    tempSelected = { ...tempSelected, page: '' };
+    tempSelected = { ...tempSelected, offset: '' };
     setSelected(tempSelected);
   }, [
     selected.color.length,
@@ -85,7 +85,7 @@ const Discover = props => {
     let tempSelected = { ...selected };
     let tmpQuery = query;
 
-    tempSelected = { ...tempSelected, page: value };
+    tempSelected = { ...tempSelected, offset: value };
     tmpQuery = QueryString(tempSelected);
 
     setQuery(tmpQuery);
