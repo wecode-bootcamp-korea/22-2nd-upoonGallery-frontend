@@ -18,7 +18,7 @@ const Login = props => {
           .then(result => {
             localStorage.setItem('access_token', result.access_token);
             alert('로그인 성공');
-            history.push('/main');
+            history.push('/');
           });
       },
       fail: function (err) {
@@ -26,6 +26,7 @@ const Login = props => {
       },
     });
   };
+
   return (
     <LoginPage>
       <LoginContain>

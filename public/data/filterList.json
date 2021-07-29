@@ -4,9 +4,9 @@
       "name": "색상",
       "type": "color",
       "category_list": [
-        { "name": "레드", "value": "레드", "color": "red" },
-        { "name": "블루", "value": "블루", "color": "blue" },
-        { "name": "그린", "value": "그린", "color": "green" }
+        { "name": "레드", "value": "레드", "color": "#FF3301" },
+        { "name": "블루", "value": "블루", "color": "#06448C" },
+        { "name": "그린", "value": "그린", "color": "#526E43" }
       ]
     },
     {
