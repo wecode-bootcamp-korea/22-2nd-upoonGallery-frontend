@@ -8,7 +8,7 @@ const Nav = props => {
   return (
     <NavBox>
       <NavContainer>
-        <Logo>
+        <Logo onClick={() => history.push('/')}>
           <i className="fas fa-paint-brush fa-3x"></i>
           <LogoText>
             <span>UPOON</span>
@@ -63,6 +63,7 @@ const Logo = styled.button`
   margin: 0 90px;
   border: none;
   background-color: white;
+  cursor: pointer;
 
   .fas {
     margin-right: 10px;
