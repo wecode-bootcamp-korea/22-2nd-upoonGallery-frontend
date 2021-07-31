@@ -16,7 +16,7 @@
 
 ### 데모 영상
 
-<a href="https://www.youtube.com/watch?v=rDNmt8StgnA">데모영상 클릭</a>
+<a href="https://youtu.be/OOkNGPRC4F0">데모영상 클릭</a>
 
 <br>
 
