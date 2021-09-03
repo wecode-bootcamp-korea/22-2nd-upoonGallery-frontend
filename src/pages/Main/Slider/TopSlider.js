@@ -1,10 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import TopSlideContents from './TopSlideContents';
 
 export default function TopSlider() {
   const slideRef = React.useRef();
   const [slideIndex, setSlideIndex] = useState(1);
+  const history = useHistory();
 
   const slideNext = () => {
     if (slideIndex < 5) {
@@ -61,13 +63,22 @@ export default function TopSlider() {
       <TopBanner>
         <TopSlideContents slideRef={slideRef} />
       </TopBanner>
-      <Label>
-        <Handler>
-          <PreviousBtn onClick={slidePrev} />
-          <NextBtn onClick={slideNext} />
-        </Handler>
-      </Label>
-      <BannerMask>금주의 작품</BannerMask>
+      <Label></Label>
+      <BannerMask>
+        <Ad>
+          <BannerTitle>[금주의 작품]</BannerTitle>
+          <BannerText>
+            웃픈갤러리에서 이번 주의 베스트상품을 만나보세요.
+          </BannerText>
+        </Ad>
+        <BannerBtn onClick={() => history.push('/discover')}>
+          <span>작품 보러가기</span>
+        </BannerBtn>
+      </BannerMask>
+      <Handler>
+        <PreviousBtn onClick={slidePrev} />
+        <NextBtn onClick={slideNext} />
+      </Handler>
     </Container>
   );
 }
@@ -131,8 +142,46 @@ const NextBtn = styled(Btn)`
   transform: rotate(135deg);
 `;
 const BannerMask = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: center;
+  align-content: center;
+  width: 100%;
   position: absolute;
-  bottom: 0;
+  bottom: 38px;
   width: 100%;
   text-align: center;
+`;
+
+const Ad = styled.div`
+  margin: 0 400px 30px 0;
+`;
+
+const BannerTitle = styled.div`
+  display: flex;
+  font-size: 50px;
+`;
+
+const BannerText = styled.div`
+  display: flex;
+  margin-top: 10px;
+  font-size: 20px;
+  color: #4a4a4a;
+`;
+
+const BannerBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  margin-top: 16px;
+  height: 50px;
+  background: #222;
+  cursor: pointer;
+
+  span {
+    margin: 5px 10px;
+    font-size: 16px;
+    color: #fff;
+  }
 `;

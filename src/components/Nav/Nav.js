@@ -8,7 +8,7 @@ const Nav = props => {
   return (
     <NavBox>
       <NavContainer>
-        <Logo>
+        <Logo onClick={() => history.push('/')}>
           <i className="fas fa-paint-brush fa-3x"></i>
           <LogoText>
             <span>UPOON</span>
@@ -16,7 +16,7 @@ const Nav = props => {
           </LogoText>
         </Logo>
         <MenuContain>
-          <NavMenu>렌탈하기</NavMenu>
+          <NavMenu onClick={() => history.push('/discover')}>렌탈하기</NavMenu>
           <NavMenu>이용후기</NavMenu>
           <NavMenu>작가소개</NavMenu>
         </MenuContain>
@@ -63,6 +63,7 @@ const Logo = styled.button`
   margin: 0 90px;
   border: none;
   background-color: white;
+  cursor: pointer;
 
   .fas {
     margin-right: 10px;
@@ -87,6 +88,7 @@ const MenuContain = styled.div`
 const NavMenu = styled.div`
   padding-left: 70px;
   font-size: 14px;
+  cursor: pointer;
 `;
 
 const MyPageContain = styled.div`

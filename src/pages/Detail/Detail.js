@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { API } from '../../config';
 import styled from 'styled-components';
 import Slide from './Components/Slide';
 import DetailCard from './Components/DetailCard';
@@ -28,16 +29,15 @@ const Detail = props => {
 
   const { id } = useParams();
 
-  // setImages([data.art_information])
   useEffect(() => {
-    fetch(`http://10.58.1.172:8000/arts/${id}`)
+    fetch(`${API}/arts/${id}`)
       .then(res => res.json())
       .then(data => setImages(data.art_information));
   }, [id]);
 
   useEffect(() => {
     if (images) {
-      fetch(`http://10.58.1.172:8000/arts?artist=${images.artist_name}`)
+      fetch(`${API}/arts?artist=${images.artist_name}`)
         .then(res => res.json())
         .then(data => setRelativeImg(data.results.map(i => i.image_url)));
     }
@@ -104,7 +104,7 @@ const Detail = props => {
     let comments = comment.Comment;
     formData.append('file', file);
     formData.append('comment', comments);
-    fetch('http://10.58.0.235:8000/arts/1/reviews', {
+    fetch(`${API}/arts/1/reviews`, {
       method: 'POST',
       headers: {
         Authorization:
@@ -199,7 +199,7 @@ const Detail = props => {
               </PaintInfo>
               <RentInfo>
                 <RentPrice>
-                  렌탈요금 : {numberWithCommas(imageId.price)}원
+                  렌탈요금 : {numberWithCommas(+imageId.price)}원
                   <span> /월 (VAT포함)</span>
                 </RentPrice>
                 <RentBtn>
@@ -328,7 +328,7 @@ const Paint = styled.div`
 
   img {
     width: 100%;
-    height: 100%;
+    max-height: 180px;
   }
 `;
 
